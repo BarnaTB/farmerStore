@@ -1,0 +1,45 @@
+{
+  "name": "farmer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only --exit-child src/server.ts",
+    "start": "node build/server.js",
+    "db:migrate": "npx prisma migrate dev --name entities --create-only && npx prisma generate",
+    "db:push": "npx prisma db push",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.13.0",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "http-status": "^1.7.4",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.0",
+    "passport": "^0.7.0",
+    "pg": "^8.11.5",
+    "pg-hstore": "^2.3.4",
+    "prisma": "^5.14.0",
+    "swagger-ui-express": "^5.0.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5",
+    "winston": "^3.13.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express-session": "^1.18.0",
+    "@types/http-status": "^1.1.2",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/morgan": "^1.9.9",
+    "@types/passport": "^1.0.16"
+  }
+}

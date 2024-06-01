@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users{
+  id String @id @default(uuid())
+  name String
+  email String 
+  phoneNumber String
+  password String
+  role Role @default(Farmer)
+  land_size Float @default(0)
+  orders Orders[]
+  isLoggedIn Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Fertilizers{
+  id String @id @default(uuid())
+  name String
+  price Float
+  quantity_limit Float
+  seeds   Seeds[]
+  orders Orders[]
+}
+
+model Seeds{
+  id String @id @default(uuid())
+  name String
+  price Float
+  quantity_limit Float
+  fertilizer_id String
+  fertilizers Fertilizers? @relation(fields: [fertilizer_id], references: [id])
+  orders Orders[]
+}
+
+model Orders{
+  id String @id @default(uuid())
+  user_id String
+  users Users @relation( fields: [user_id], references: [id])
+  fertilizer_id String
+  fertilizers Fertilizers @relation(fields: [fertilizer_id], references: [id])
+  seed_id String
+  seeds Seeds @relation(fields: [seed_id], references: [id])
+  land_size Float
+  fertilizer_quantity Float
+  seeds_quantity Float
+  totalPrice Float
+  status Status @default(Pending)
+  paid Boolean @default(false)
+}
+
+enum Status{
+  Pending
+  Approved
+  Rejected
+}
+enum Role{
+  Farmer
+  Admin
+}
