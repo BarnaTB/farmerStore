@@ -2,7 +2,7 @@ import { Seeds } from "@prisma/client";
 import { NextFunction, Request, Response } from "express";
 import { Seed } from "../types/allTypes";
 import httpStatus from 'http-status';
-import { SeedsService } from "../services/seedsService";
+import { SeedsService } from "../services/seeds.service";
 
 export class SeedsController{
     static async createSeeds(req:Request, res:Response,next:NextFunction){

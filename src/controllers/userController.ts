@@ -1,7 +1,7 @@
 import { Users } from "@prisma/client";
 import {User} from '../types/allTypes';
 import { NextFunction, Request, Response } from "express";
-import { UserService } from "../services/userService";
+import { UserService } from "../services/user.service";
 import httpStatus from 'http-status';
 import { comparePassword, hashPassword } from "../utils/password";
 import { generateToken } from "../utils/token";

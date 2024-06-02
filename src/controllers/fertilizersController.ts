@@ -2,7 +2,7 @@ import { Fertilizers } from "@prisma/client";
 import { NextFunction, Request, Response } from "express";
 import { Fertilizer } from "../types/allTypes";
 import httpStatus from 'http-status';
-import { FertilizerService } from "../services/fertilizerService";
+import { FertilizerService } from "../services/fertilizer.service";
 
 export class FertilizerController{
     static async createFertilizer(req:Request, res:Response, next:NextFunction){
